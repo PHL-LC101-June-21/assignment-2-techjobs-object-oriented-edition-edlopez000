@@ -25,7 +25,7 @@ public class JobTest {
     public void testJobConstructorSetsAllFields() {
         Job testJobber3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        assertTrue(testJobber3 instanceof Job);
+        assertTrue(testJobber3.getName() instanceof String);
         assertTrue(testJobber3.getEmployer() instanceof Employer);
         assertTrue(testJobber3.getLocation() instanceof Location);
         assertTrue(testJobber3.getPositionType() instanceof PositionType);
@@ -43,5 +43,39 @@ public class JobTest {
         Job testJobberTwin2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         assertTrue(testJobberTwin2.equals(testJobberTwin2));
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job testJobber1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String testToString = testJobber1.toString();
+        assertEquals('\n', testJobber1.toString().charAt(0));
+        assertEquals('\n', testJobber1.toString().charAt(testToString.length() - 1));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job testJobber = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String testToString = testJobber.toString();
+
+        assertEquals("\n" + "ID: " + testJobber.getId() + "\n" +
+                "Name: " + testJobber.getName() + "\n" +
+                "Employer: " + testJobber.getEmployer().getValue() + "\n" +
+                "Location: " + testJobber.getLocation().getValue() + "\n" +
+                "Position Type: " + testJobber.getPositionType().getValue() + "\n" +
+                "Core Competency: " + testJobber.getCoreCompetency().getValue() + "\n", testToString);
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField(){
+        Job testJobber = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        String testToString = testJobber.toString();
+
+        assertEquals("\n" + "ID: " + "Data not available" + "\n" +
+                "Name: " + "Data not available" + "\n" +
+                "Employer: " + "Data not available" + "\n" +
+                "Location: " + "Data not available" + "\n" +
+                "Position Type: " + "Data not available" + "\n" +
+                "Core Competency: " + "Data not available" + "\n", testToString);
     }
 }

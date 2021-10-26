@@ -45,7 +45,11 @@ public class Employer {
     }
 
     public String getValue() {
-        return value;
+        if (value == "") {
+            return "Data not available";
+        } else {
+            return value;
+        }
     }
 
     public void setValue(String value) {
