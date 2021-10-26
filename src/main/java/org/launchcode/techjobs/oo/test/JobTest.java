@@ -42,7 +42,7 @@ public class JobTest {
         Job testJobberTwin1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         Job testJobberTwin2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        assertTrue(testJobberTwin2.equals(testJobberTwin2));
+        assertFalse(testJobberTwin2.equals(testJobberTwin2));
     }
 
     @Test
